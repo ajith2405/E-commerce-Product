@@ -22,7 +22,8 @@ public class OrderService {
         return orderRepository.findById(id)
                 .map(existingOrder -> {
                     existingOrder.setCustomer(order.getCustomer());
-                    existingOrder.setOrderItems(order.getOrderItems());
+                    existingOrder.setCustomer(order.getCustomer());
+                    existingOrder.setStatus(order.getStatus());
                     return orderRepository.save(existingOrder);
                 }).orElseThrow(() -> new RuntimeException("Order not found"));
     }

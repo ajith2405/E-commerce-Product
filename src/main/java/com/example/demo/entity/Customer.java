@@ -10,23 +10,21 @@ import java.util.List;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
-    private String password;
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<OrderEntity> orderEntities;
+    private String address;
+
 
     public Customer() {
     }
 
-    public Customer(Long id, String name, String email, String password, List<OrderEntity> orderEntities) {
+    public Customer(Long id, String name, String email, String address) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.password = password;
-        this.orderEntities = orderEntities;
+        this.address = address;
     }
 
     public Long getId() {
@@ -53,19 +51,12 @@ public class Customer {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getAddress() {
+        return address;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public List<OrderEntity> getOrders() {
-        return orderEntities;
-    }
-
-    public void setOrders(List<OrderEntity> orderEntities) {
-        this.orderEntities = orderEntities;
-    }
 }
