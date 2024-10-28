@@ -20,15 +20,22 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-   public Product updateProduct(Long id, Product product) throws Exception{
+    public Product updateProduct(Long id, Product product) {
         return productRepository.findById(id)
                 .map(ex -> {
-            ex.setName(product.getName());
-            ex.setCategory(product.getCategory());
-            ex.setPrice(product.getPrice());
-            ex.setDescription(product.getDescription());
-            return ex;
-        }).orElseThrow(()-> new RuntimeException("no product found"));
+                    ex.setName(product.getName());
+                    ex.setCategory(product.getCategory());
+                    ex.setPrice(product.getPrice());
+                    ex.setDescription(product.getDescription());
+                    return ex;
+                }).orElseThrow(()-> new RuntimeException("no product found"));
+    }
+    public List<Product> getProductsByCategory(Long categoryId) {
+        if (categoryId != null) {
+            return productRepository.findByCategoryId(categoryId);
+        } else {
+            return productRepository.findAll();
+        }
     }
 
     public void deleteProduct(Long id){
